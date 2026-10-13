@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: docuchat-postgres
+    environment:
+      POSTGRES_USER: docuchat
+      POSTGRES_PASSWORD: docuchat_dev
+      POSTGRES_DB: docuchat
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: docuchat-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
